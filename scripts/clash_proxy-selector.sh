@@ -2,7 +2,7 @@
 
 # Clash API地址
 api_url="http://localhost:9090"
-Secret="填写Clash Secret"
+Secret="1"
 
 # 获取Clash代理节点列表
 get_proxy_list() {
