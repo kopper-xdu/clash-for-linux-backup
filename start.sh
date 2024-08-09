@@ -186,7 +186,6 @@ echo -e "Clash Dashboard 访问地址: http://<ip>:9090/ui"
 echo -e "Secret: ${Secret}"
 echo ''
 
-# 添加环境变量(root权限)
 cat>~/clash.sh<<EOF
 # 开启系统代理
 proxy_on() {
