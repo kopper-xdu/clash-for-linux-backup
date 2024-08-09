@@ -25,7 +25,7 @@ else
 
       if [[ $CpuArch =~ "x86_64" || $CpuArch =~ "amd64" ]]; then
         ${Server_Dir}/tools/subconverter/subconverter -g &>> ${Server_Dir}/logs/subconverter.log
-      elif [[ $CpuArch =~ "arm64" ]]; then
+      elif [[ $CpuArch =~ "aarch64" ]]; then
         ${Server_Dir}/tools/subconverter/subconverter_arm64 -g &>> ${Server_Dir}/logs/subconverter.log
       fi
       
