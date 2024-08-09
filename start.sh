@@ -8,8 +8,8 @@
 # 获取脚本工作目录绝对路径
 export Server_Dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
-# 加载.env变量文件
-source $Server_Dir/.env
+export CLASH_URL=''
+export CLASH_SECRET='1'
 
 # 给二进制启动程序、脚本等添加可执行权限
 chmod +x $Server_Dir/bin/*
@@ -211,5 +211,6 @@ proxy_off(){
 }
 EOF
 
+echo -e "请执行以下命令: source ~/clash.sh\n"
 echo -e "请执行以下命令开启系统代理: proxy_on\n"
 echo -e "若要临时关闭系统代理，请执行: proxy_off\n"
