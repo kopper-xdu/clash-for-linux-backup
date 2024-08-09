@@ -15,6 +15,7 @@ source $Server_Dir/.env
 chmod +x $Server_Dir/bin/*
 chmod +x $Server_Dir/scripts/*
 chmod +x $Server_Dir/tools/subconverter/subconverter
+chmod +x $Server_Dir/tools/subconverter/subconverter_arm64
 
 
 
@@ -133,7 +134,7 @@ if_success $Text3 $Text4 $ReturnStatus
 
 
 ## 判断订阅内容是否符合clash配置文件标准，尝试转换（当前不支持对 x86_64 以外的CPU架构服务器进行clash配置文件检测和转换，此功能将在后续添加）
-if [[ $CpuArch =~ "x86_64" || $CpuArch =~ "amd64" || $CpuArch =~ "arm64" ]]; then
+if [[ $CpuArch =~ "x86_64" || $CpuArch =~ "amd64" || $CpuArch =~ "aarch64" ]]; then
 	echo -e '\n判断订阅内容是否符合clash配置文件标准:'
 	bash $Server_Dir/scripts/clash_profile_conversion.sh
 	sleep 3
@@ -186,7 +187,7 @@ echo -e "Secret: ${Secret}"
 echo ''
 
 # 添加环境变量(root权限)
-cat>/etc/profile.d/clash.sh<<EOF
+cat>~/clash.sh<<EOF
 # 开启系统代理
 proxy_on() {
 	export http_proxy=http://127.0.0.1:7890
@@ -209,26 +210,7 @@ proxy_off(){
 	echo -e "\033[31m[×] 已关闭代理\033[0m"
 }
 EOF
-echo -e "     く__,.ヘヽ.        /  ,ー､ 〉"
-echo -e "           ＼ ', !-─‐-i  /  /´"
-echo -e "          ／｀ｰ'       L/／｀ヽ､"
-echo -e "         /   ／,   /|   ,   ,       ',"
-echo -e "        ｲ   / /-‐/  ｉ  L_ ﾊ ヽ!   i"
-echo -e "        ﾚ ﾍ 7ｲ｀ﾄ   ﾚ'ｧ-ﾄ､!ハ|   |"
-echo -e "          !,/7 '0'     ´0iソ|    |"
-echo -e "          |.从     _     ,,,, / |./    |"
-echo -e "          ﾚ'| i＞.､,,__  _,.イ /   .i   |"
-echo -e "           ﾚ'| | / k_７_/ﾚ'ヽ,  ﾊ.  |"
-echo -e "             | |/i 〈|/   i  ,.ﾍ |  i  |"
-echo -e "            .|/ /  ｉ：    ﾍ!    ＼  |"
-echo -e "             kヽ>､ﾊ    _,.ﾍ､    /､!"
-echo -e "             !'〈//｀Ｔ´', ＼ ｀'7'ｰr'"
-echo -e "             ﾚ'ヽL__|___i,___,ンﾚ|ノ"
-echo -e "                  ﾄ-,/  |___./"
-echo -e "                  'ｰ'    !_,.:"
-echo -e "本项目完全免费，若你是收费买的，恭喜您，您被骗了！"
-echo -e "项目地址：https://github.com/Elegycloud/clash-for-linux-backup"
-echo -e "项目随时会寄，且行且珍惜！"
-echo -e "请执行以下命令加载环境变量: source /etc/profile.d/clash.sh\n"
+
+source ~/clash.sh
 echo -e "请执行以下命令开启系统代理: proxy_on\n"
 echo -e "若要临时关闭系统代理，请执行: proxy_off\n"
